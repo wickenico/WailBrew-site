@@ -798,3 +798,345 @@ body {
     height: 1.25rem;
   }
 }
+
+/* Enhanced Download Section Styles */
+.download-grid-enhanced {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.download-card-primary,
+.download-card-secondary,
+.download-card-tertiary {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.download-card-primary {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(99, 102, 241, 0.05) 100%);
+}
+
+.download-card-primary:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+  border-color: var(--primary-light);
+}
+
+.download-card-secondary:hover,
+.download-card-tertiary:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent);
+}
+
+.download-card-header {
+  padding: 2rem 2rem 1rem;
+  position: relative;
+}
+
+.download-card-content {
+  padding: 0 2rem 2rem;
+}
+
+.download-icon-wrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.download-icon-wrapper.primary {
+  background: var(--gradient-primary);
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+}
+
+.download-icon-wrapper.secondary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--success) 100%);
+  box-shadow: 0 8px 32px rgba(6, 182, 212, 0.3);
+}
+
+.download-icon-wrapper.tertiary {
+  background: linear-gradient(135deg, var(--foreground-muted) 0%, var(--border-light) 100%);
+  box-shadow: 0 8px 32px rgba(113, 113, 122, 0.2);
+}
+
+.download-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.download-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--foreground-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.code-block {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.code-dots {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.code-dots span {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--border-light);
+}
+
+.code-dots span:nth-child(1) {
+  background: #ff5f57;
+}
+
+.code-dots span:nth-child(2) {
+  background: #ffbd2e;
+}
+
+.code-dots span:nth-child(3) {
+  background: #28ca42;
+}
+
+.code-title {
+  font-size: 0.75rem;
+  color: var(--foreground-subtle);
+  font-weight: 500;
+}
+
+.code-content {
+  padding: 1rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.homebrew-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.benefit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: var(--success);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.github-stats {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.github-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--foreground-muted);
+}
+
+.star-icon {
+  font-size: 1rem;
+}
+
+.notice-card {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.05) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.notice-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 1rem;
+  flex-shrink: 0;
+}
+
+.notice-content {
+  flex: 1;
+  text-align: center;
+}
+
+.notice-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.notice-text {
+  color: var(--foreground-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.notice-link {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.notice-link:hover {
+  color: var(--primary-light);
+}
+
+.notice-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.notice-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 0.75rem;
+  color: rgb(245, 158, 11);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.notice-button:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Responsive Download Section */
+@media (max-width: 1024px) {
+  .download-grid-enhanced {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .download-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .download-grid-enhanced {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .notice-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .github-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .homebrew-benefits {
+    align-items: center;
+  }
+}

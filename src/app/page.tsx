@@ -62,7 +62,7 @@ export default function Home() {
             {/* Logo Section */}
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 flex items-center justify-center">
-                <Image
+        <Image
                   src="/logo.png"
                   alt="WailBrew Logo"
                   width={32}
@@ -92,15 +92,15 @@ export default function Home() {
                   data-section="download"
                 >
                   Download
-                </a>
-                <a 
+          </a>
+          <a
                   href="#screenshots" 
                   className="nav-menu-item"
                   data-section="screenshots"
                 >
                   Screenshots
-                </a>
-              </div>
+          </a>
+        </div>
               
               {/* Separator */}
               <div className="w-px h-6 bg-[var(--border-light)] mr-8"></div>
@@ -109,9 +109,9 @@ export default function Home() {
               <a 
                 href="https://github.com/wickenico/WailBrew" 
                 className="nav-github-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+          target="_blank"
+          rel="noopener noreferrer"
+        >
                 <GitHubIcon className="w-5 h-5" />
                 <span>GitHub</span>
               </a>
@@ -134,7 +134,7 @@ export default function Home() {
             <div className="animate-fade-in-up">
               <div className="flex justify-center mb-8 animate-scale-in">
                 <div className="relative">
-                  <Image
+          <Image
                     src="/logo.png"
                     alt="WailBrew Logo"
                     width={120}
@@ -251,67 +251,161 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Modern Download Section */}
-      <section id="download" className="section-padding bg-[var(--surface-variant)]">
-        <div className="w-full flex justify-center">
-          <div className="max-w-6xl mx-auto px-8 lg:px-12 w-full">
-            <div className="text-center mb-24">
-              <h2 className="text-heading mb-10 animate-fade-in-up section-text">Download WailBrew</h2>
-              <p className="text-body-large animate-fade-in-up-delay-1 leading-relaxed section-text">
-                Get started today and discover the wonderful world of Homebrew through a beautiful interface.
-              </p>
+      {/* Enhanced Download Section */}
+      <section id="download" className="section-padding bg-[var(--surface-variant)] relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-tl from-[var(--accent)] to-[var(--success)] rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative w-full flex justify-center">
+          <div className="max-w-7xl mx-auto px-8 lg:px-12 w-full">
+            {/* Section Header */}
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-3 bg-[var(--surface-elevated)] px-6 py-3 rounded-full border border-[var(--border)] mb-8 animate-fade-in-up">
+                <DownloadIcon className="w-5 h-5 text-[var(--primary)]" />
+                <span className="text-sm font-medium text-[var(--primary)]">Ready to get started?</span>
+              </div>
+              <h2 className="text-heading mb-8 animate-fade-in-up-delay-1 section-text">Download WailBrew</h2>
+              <div className="flex justify-center">
+                <p className="text-body-large max-w-3xl mx-auto animate-fade-in-up-delay-2 leading-relaxed section-text text-center">
+                  Choose your preferred installation method and start managing your Homebrew packages with style.
+                </p>
+              </div>
             </div>
             
-            <div className="center-content">
-              <div className="download-grid">
-                <div className="card animate-fade-in-up">
-                  <div className="text-center flex-1">
-                    <div className="w-16 h-16 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-2xl flex items-center justify-center mx-auto mb-10 glow-primary">
+            {/* Download Options */}
+            <div className="center-content mb-32">
+              <div className="download-grid-enhanced">
+                {/* Direct Download Card */}
+                <div className="download-card-primary animate-fade-in-up">
+                  <div className="download-card-header">
+                    <div className="download-icon-wrapper primary">
                       <DownloadIcon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-subheading mb-8">Direct Download</h3>
-                    <p className="text-body mb-12 leading-relaxed">
-                      Download the latest version directly from GitHub releases. Get the most up-to-date features and improvements.
+                    <div className="download-badge">Recommended</div>
+                  </div>
+                  <div className="download-card-content">
+                    <h3 className="text-subheading mb-4">Direct Download</h3>
+                    <p className="text-body mb-8 leading-relaxed">
+                      Get the latest stable release with all features included. Perfect for most users who want a simple installation.
                     </p>
-                    <a href="https://github.com/wickenico/WailBrew/releases/latest" className="btn-primary inline-flex items-center gap-2 w-full justify-center px-6 py-4">
+                    <div className="download-stats mb-8">
+                      <div className="stat-item">
+                        <span className="stat-label">Version</span>
+                        <span className="stat-value">Latest</span>
+                      </div>
+                      <div className="stat-item">
+                        <span className="stat-label">Size</span>
+                        <span className="stat-value">~15 MB</span>
+                      </div>
+                      <div className="stat-item">
+                        <span className="stat-label">macOS</span>
+                        <span className="stat-value">11.0+</span>
+                      </div>
+                    </div>
+                    <a href="https://github.com/wickenico/WailBrew/releases/latest" className="btn-primary inline-flex items-center gap-3 w-full justify-center px-6 py-4 text-lg">
                       <DownloadIcon className="w-5 h-5" />
-                      Download Latest Release
+                      Download for macOS
                     </a>
                   </div>
                 </div>
-                
-                <div className="card animate-fade-in-up-delay-1">
-                  <div className="text-center flex-1">
-                    <div className="w-16 h-16 bg-gradient-to-br from-[var(--accent)] to-[var(--success)] rounded-2xl flex items-center justify-center mx-auto mb-10 glow-accent">
+
+                {/* Homebrew Installation Card */}
+                <div className="download-card-secondary animate-fade-in-up-delay-1">
+                  <div className="download-card-header">
+                    <div className="download-icon-wrapper secondary">
                       <CommandLineIcon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-subheading mb-8">Install via Homebrew</h3>
-                    <p className="text-body mb-12 leading-relaxed">
-                      How recursive is that? Install WailBrew using Homebrew itself! Perfect for command-line enthusiasts.
+                  </div>
+                  <div className="download-card-content">
+                    <h3 className="text-subheading mb-4">Install via Homebrew</h3>
+                    <p className="text-body mb-8 leading-relaxed">
+                      Use Homebrew to install WailBrew. Perfect for developers who prefer command-line package management.
                     </p>
-                    <div className="bg-[var(--surface-elevated)] rounded-xl p-8 border border-[var(--border)] font-mono text-sm mb-10">
-                      <code className="text-[var(--accent)]">brew install --cask wailbrew</code>
+                    <div className="code-block mb-8">
+                      <div className="code-header">
+                        <div className="code-dots">
+                          <span></span>
+                          <span></span>
+                          <span></span>
+                        </div>
+                        <span className="code-title">Terminal</span>
+                      </div>
+                      <div className="code-content">
+                        <code className="text-[var(--accent)]">brew install --cask wailbrew</code>
+                      </div>
                     </div>
+                    <div className="homebrew-benefits">
+                      <div className="benefit-item">
+                        <span className="benefit-icon">✓</span>
+                        <span>Automatic updates</span>
+                      </div>
+                      <div className="benefit-item">
+                        <span className="benefit-icon">✓</span>
+                        <span>Easy uninstallation</span>
+                      </div>
+                      <div className="benefit-item">
+                        <span className="benefit-icon">✓</span>
+                        <span>Dependency management</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* GitHub Source Card */}
+                <div className="download-card-tertiary animate-fade-in-up-delay-2">
+                  <div className="download-card-header">
+                    <div className="download-icon-wrapper tertiary">
+                      <GitHubIcon className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                  <div className="download-card-content">
+                    <h3 className="text-subheading mb-4">Build from Source</h3>
+                    <p className="text-body mb-8 leading-relaxed">
+                      Clone the repository and build WailBrew yourself. Perfect for developers who want to contribute or customize.
+                    </p>
+                    <div className="github-stats mb-8">
+                      <div className="github-stat">
+                        <GitHubIcon className="w-4 h-4" />
+                        <span>Open Source</span>
+                      </div>
+                      <div className="github-stat">
+                        <span className="star-icon">⭐</span>
+                        <span>MIT License</span>
+                      </div>
+                    </div>
+                    <a href="https://github.com/wickenico/WailBrew" className="btn-secondary inline-flex items-center gap-3 w-full justify-center px-6 py-4">
+                      <GitHubIcon className="w-5 h-5" />
+                      View on GitHub
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="mt-24 max-w-4xl mx-auto">
-              <div className="card bg-gradient-to-r from-amber-500/10 to-orange-500/10 border-amber-500/20 animate-fade-in-up-delay-2">
-                <div className="flex items-start gap-6">
-                  <div className="w-8 h-8 bg-amber-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-amber-400 text-lg">⚠️</span>
+            {/* Installation Notice */}
+            <div className="w-full flex justify-center" style={{ marginTop: '2rem' }}>
+              <div className="max-w-4xl mx-auto px-4">
+                <div className="notice-card animate-fade-in-up-delay-3" style={{ marginTop: '2rem' }}>
+                  <div className="notice-icon">
+                    <span className="text-amber-400 text-2xl">💡</span>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-4 text-amber-400">Installation Notice</h4>
-                    <p className="text-body leading-relaxed">
-                      WailBrew doesn&apos;t install Homebrew for you. To install Homebrew, please visit their{' '}
-                      <a href="https://brew.sh" className="text-[var(--primary)] hover:text-[var(--primary-light)] underline transition-colors">
-                        official website
+                  <div className="notice-content">
+                    <h4 className="notice-title">Before You Install</h4>
+                    <p className="notice-text">
+                      WailBrew requires Homebrew to be installed on your system. If you haven&apos;t installed Homebrew yet, visit{' '}
+                      <a href="https://brew.sh" className="notice-link" target="_blank" rel="noopener noreferrer">
+                        brew.sh
                       </a>
-                      {' '}first.
+                      {' '}to get started. The installation is quick and straightforward.
                     </p>
+                    <div className="notice-actions">
+                      <a href="https://brew.sh" className="notice-button" target="_blank" rel="noopener noreferrer">
+                        Install Homebrew First
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -402,18 +496,18 @@ export default function Home() {
                   <a 
                     href="https://github.com/wickenico/WailBrew" 
                     className="footer-social-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+          target="_blank"
+          rel="noopener noreferrer"
+        >
                     <GitHubIcon className="w-5 h-5" />
                     <span className="sr-only">GitHub</span>
-                  </a>
-                  <a 
+        </a>
+        <a
                     href="https://github.com/wickenico/WailBrew/releases" 
                     className="footer-social-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+          target="_blank"
+          rel="noopener noreferrer"
+        >
                     <DownloadIcon className="w-5 h-5" />
                     <span className="sr-only">Releases</span>
                   </a>
