@@ -1,7 +1,43 @@
+'use client';
+
 import { GitHubIcon, DownloadIcon, CommandLineIcon, SparklesIcon, ShieldCheckIcon, CubeIcon } from '@/components/icons';
 import Image from 'next/image';
+import { useEffect } from 'react';
 
 export default function Home() {
+  useEffect(() => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu-item[data-section]');
+    
+    function updateActiveSection() {
+      let current = '';
+      sections.forEach(section => {
+        const htmlElement = section as HTMLElement;
+        const sectionTop = htmlElement.offsetTop;
+        if (window.scrollY >= sectionTop - 200) {
+          const sectionId = section.getAttribute('id');
+          if (sectionId) {
+            current = sectionId;
+          }
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === current) {
+          link.classList.add('active');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', updateActiveSection);
+    updateActiveSection();
+    
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       {/* Modern Navigation */}
@@ -21,7 +57,6 @@ export default function Home() {
               </div>
               <div>
                 <span className="text-xl font-bold tracking-tight">WailBrew</span>
-                <span className="text-xs text-[var(--foreground-subtle)] ml-2 hidden sm:inline">Homebrew GUI</span>
               </div>
             </div>
             
@@ -315,62 +350,128 @@ export default function Home() {
       </section>
 
       {/* Modern Footer */}
-      <footer className="bg-[var(--surface)] border-t border-[var(--border)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-8 md:mb-0">
-              <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-lg">W</span>
+      <footer className="relative bg-gradient-to-br from-[var(--surface)] via-[var(--surface-elevated)] to-[var(--surface-alt)] border-t border-[var(--border)] overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)]"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[var(--accent)] to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-[var(--primary)] to-transparent rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          {/* Main Footer Content */}
+          <div className="py-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+              {/* Brand Section */}
+              <div className="lg:col-span-2">
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="w-12 h-12 flex items-center justify-center">
+                    <Image
+                      src="/logo.png"
+                      alt="WailBrew Logo"
+                      width={36}
+                      height={36}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold tracking-tight gradient-text">WailBrew</h3>
+                    <p className="text-[var(--foreground-subtle)] text-sm">The beautiful Homebrew GUI</p>
+                  </div>
+                </div>
+                <p className="text-[var(--foreground-muted)] text-lg leading-relaxed mb-8 max-w-md">
+                  Experience the power of Homebrew through an intuitive, modern interface. 
+                  Package management has never been this beautiful.
+                </p>
+                <div className="flex items-center space-x-4">
+                  <a 
+                    href="https://github.com/wickenico/WailBrew" 
+                    className="footer-social-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <GitHubIcon className="w-5 h-5" />
+                    <span className="sr-only">GitHub</span>
+                  </a>
+                  <a 
+                    href="https://github.com/wickenico/WailBrew/releases" 
+                    className="footer-social-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <DownloadIcon className="w-5 h-5" />
+                    <span className="sr-only">Releases</span>
+                  </a>
+                </div>
               </div>
+
+              {/* Quick Links */}
               <div>
-                <span className="text-2xl font-bold tracking-tight">WailBrew</span>
-                <p className="text-[var(--foreground-subtle)] text-sm">Homebrew GUI for macOS</p>
+                <h4 className="text-lg font-semibold mb-6 text-[var(--foreground)]">Quick Links</h4>
+                <ul className="space-y-4">
+                  <li>
+                    <a href="#features" className="footer-link">Features</a>
+                  </li>
+                  <li>
+                    <a href="#download" className="footer-link">Download</a>
+                  </li>
+                  <li>
+                    <a href="#screenshots" className="footer-link">Screenshots</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wickenico/WailBrew/releases" className="footer-link" target="_blank" rel="noopener noreferrer">
+                      Releases
+                    </a>
+                  </li>
+                </ul>
               </div>
-            </div>
-            <div className="flex items-center space-x-6">
-              <a href="https://github.com/wickenico/WailBrew" className="text-[var(--foreground-muted)] hover:text-[var(--foreground)] transition-colors">
-                <GitHubIcon className="w-6 h-6" />
-              </a>
+
+              {/* Resources */}
+              <div>
+                <h4 className="text-lg font-semibold mb-6 text-[var(--foreground)]">Resources</h4>
+                <ul className="space-y-4">
+                  <li>
+                    <a href="https://github.com/wickenico/WailBrew" className="footer-link" target="_blank" rel="noopener noreferrer">
+                      Source Code
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wickenico/WailBrew/issues" className="footer-link" target="_blank" rel="noopener noreferrer">
+                      Report Issues
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://brew.sh" className="footer-link" target="_blank" rel="noopener noreferrer">
+                      Homebrew
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/wickenico/WailBrew/blob/main/LICENSE" className="footer-link" target="_blank" rel="noopener noreferrer">
+                      MIT License
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-[var(--border)] text-center">
-            <p className="text-[var(--foreground-subtle)]">
-              © 2025 WailBrew. Open source software under MIT License.
-            </p>
+
+          {/* Footer Bottom */}
+          <div className="border-t border-[var(--border)] py-8">
+            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div className="flex items-center space-x-8">
+                <p className="text-[var(--foreground-subtle)] text-sm">
+                  WailBrew © Nico Wickersheim 2025. Open source software under MIT License.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-[var(--foreground-subtle)]">
+                <span>Built with</span>
+                <span className="text-red-500">♥</span>
+                <span>in Freiburg</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
-
-      {/* Add scroll detection script */}
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-menu-item[data-section]');
-            
-            function updateActiveSection() {
-              let current = '';
-              sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop - 200) {
-                  current = section.getAttribute('id');
-                }
-              });
-              
-              navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-section') === current) {
-                  link.classList.add('active');
-                }
-              });
-            }
-            
-            window.addEventListener('scroll', updateActiveSection);
-            updateActiveSection();
-          });
-        `
-      }} />
     </div>
   );
 }
