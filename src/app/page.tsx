@@ -1,10 +1,12 @@
 'use client';
 
-import { GitHubIcon, DownloadIcon, CommandLineIcon, SparklesIcon, ShieldCheckIcon, CubeIcon } from '@/components/icons';
+import { GitHubIcon, DownloadIcon, CommandLineIcon, SparklesIcon, ShieldCheckIcon, CubeIcon, ArrowUpIcon } from '@/components/icons';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-menu-item[data-section]');
@@ -29,14 +31,27 @@ export default function Home() {
         }
       });
     }
+
+    function handleScroll() {
+      updateActiveSection();
+      // Show back to top button when user scrolls down 300px
+      setShowBackToTop(window.scrollY > 300);
+    }
     
-    window.addEventListener('scroll', updateActiveSection);
-    updateActiveSection();
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
     
     return () => {
-      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -472,6 +487,17 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="back-to-top-btn"
+          aria-label="Back to top"
+        >
+          <ArrowUpIcon className="w-5 h-5" />
+        </button>
+      )}
     </div>
   );
 }

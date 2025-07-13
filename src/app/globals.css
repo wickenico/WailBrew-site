@@ -743,3 +743,58 @@ body {
 .footer-social-link:hover svg {
   transform: scale(1.1);
 }
+
+/* Back to Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: var(--gradient-primary);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  animation: fadeInUp 0.3s ease;
+}
+
+.back-to-top-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2xl);
+  background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 50%, var(--accent-hover) 100%);
+}
+
+.back-to-top-btn:active {
+  transform: translateY(-2px);
+  transition: transform 0.1s ease;
+}
+
+.back-to-top-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.back-to-top-btn:hover svg {
+  transform: translateY(-1px);
+}
+
+/* Responsive back to top button */
+@media (max-width: 768px) {
+  .back-to-top-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  
+  .back-to-top-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
