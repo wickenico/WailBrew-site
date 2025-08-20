@@ -58,7 +58,7 @@ export default function Home() {
       {/* Modern Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-[var(--border)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center h-20">
             {/* Logo Section */}
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 flex items-center justify-center">
@@ -76,7 +76,7 @@ export default function Home() {
             </div>
             
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center">
+            <div className="hidden lg:flex items-center ml-auto">
               {/* Navigation Links */}
               <div className="flex items-center space-x-8 mr-8">
                 <a 
@@ -92,26 +92,26 @@ export default function Home() {
                   data-section="download"
                 >
                   Download
-          </a>
-          <a
+                </a>
+                <a
                   href="#screenshots" 
                   className="nav-menu-item"
                   data-section="screenshots"
                 >
                   Screenshots
-          </a>
-        </div>
+                </a>
+              </div>
               
               {/* Separator */}
-              <div className="w-px h-6 bg-[var(--border-light)] mr-8"></div>
+              <div className="w-px h-6 bg-[var(--border-light)] mr-4"></div>
               
               {/* GitHub Button */}
               <a 
                 href="https://github.com/wickenico/WailBrew" 
                 className="nav-github-button"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <GitHubIcon className="w-5 h-5" />
                 <span>GitHub</span>
               </a>
@@ -153,6 +153,35 @@ export default function Home() {
                   Experience the power of command-line tools through an intuitive, modern interface.
                 </p>
               </div>
+              
+              {/* Hero Installation Code Block */}
+              <div className="animate-fade-in-up-delay-2 flex justify-center">
+                <div className="code-block max-w-2xl relative group">
+                  <div className="code-header">
+                    <div className="code-dots">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                    <span className="code-title">Quick Install</span>
+                    <button 
+                      onClick={() => {
+                        navigator.clipboard.writeText('brew tap wickenico/wailbrew\nbrew install --cask wailbrew');
+                      }}
+                      className="copy-button opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-auto bg-[var(--surface-elevated)] hover:bg-[var(--border-light)] border border-[var(--border)] rounded px-2 py-1 text-xs text-[var(--foreground-muted)] hover:text-[var(--foreground)]"
+                    >
+                      Copy
+                    </button>
+                  </div>
+                  <div className="code-content text-left px-6 py-4">
+                    <code className="text-[var(--accent)] text-base leading-relaxed">brew tap wickenico/wailbrew<br/>brew install --cask wailbrew</code>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Spacer for proper separation */}
+              <div className="h-10"></div>
+              
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-up-delay-3">
                 <a href="#download" className="btn-primary inline-flex items-center gap-3 text-lg px-8 py-4">
                   <DownloadIcon className="w-5 h-5" />
@@ -334,7 +363,7 @@ export default function Home() {
                         <span className="code-title">Terminal</span>
                       </div>
                       <div className="code-content">
-                        <code className="text-[var(--accent)]">brew install --cask wailbrew</code>
+                        <code className="text-[var(--accent)]">brew tap wickenico/wailbrew<br/>brew install --cask wailbrew</code>
                       </div>
                     </div>
                     <div className="homebrew-benefits">
