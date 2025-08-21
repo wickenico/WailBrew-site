@@ -1,6 +1,6 @@
 'use client';
 
-import { GitHubIcon, DownloadIcon, CommandLineIcon, SparklesIcon, ShieldCheckIcon, CubeIcon, ArrowUpIcon } from '@/components/icons';
+import { GitHubIcon, DownloadIcon, CommandLineIcon, SparklesIcon, ShieldCheckIcon, ArrowUpIcon } from '@/components/icons';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
@@ -37,6 +37,27 @@ export default function Home() {
       // Show back to top button when user scrolls down 300px
       setShowBackToTop(window.scrollY > 300);
     }
+
+    // Screenshot slider functions
+    (window as any).updateDots = function(activeIndex: number) {
+      const dots = document.querySelectorAll('.screenshot-dot-enhanced');
+      dots.forEach((dot, index) => {
+        if (index === activeIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    };
+
+    (window as any).goToSlide = function(index: number) {
+      const track = document.getElementById('screenshot-track');
+      if (track) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        track.dataset.currentIndex = index.toString();
+        (window as any).updateDots(index);
+      }
+    };
     
     window.addEventListener('scroll', handleScroll);
     handleScroll();
@@ -445,6 +466,7 @@ export default function Home() {
 
       {/* Modern Screenshots Section */}
       <section id="screenshots" className="section-padding bg-[var(--surface)]">
+        {/* Header */}
         <div className="w-full flex justify-center">
           <div className="max-w-7xl mx-auto px-8 lg:px-12 w-full">
             <div className="text-center mb-24">
@@ -453,34 +475,123 @@ export default function Home() {
                 Experience the beautiful interface and powerful features that make package management effortless.
               </p>
             </div>
-            
-            <div className="center-content">
-              <div className="screenshots-grid">
-                <div className="card animate-fade-in-up">
-                  <div className="aspect-video bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--card-bg)] rounded-xl mb-10 flex items-center justify-center border border-[var(--border)] overflow-hidden">
-                    <div className="text-center">
-                      <CubeIcon className="w-16 h-16 text-[var(--foreground-subtle)] mx-auto mb-4" />
-                      <p className="text-[var(--foreground-subtle)] text-sm">Screenshot Coming Soon</p>
+          </div>
+        </div>
+        
+        {/* Centered Slider */}
+        <div className="w-full flex justify-center">
+          <div className="max-w-4xl mx-auto w-full">
+            <div className="relative">
+              <div className="screenshot-slider overflow-hidden rounded-3xl border-2 border-[var(--border)] shadow-2xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] backdrop-blur-sm mx-auto">
+                      <div className="flex transition-transform duration-700 ease-out" id="screenshot-track">
+                        <div className="w-full flex-shrink-0 relative">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
+                          <Image
+                            src="/main-interface.png"
+                            alt="WailBrew Main Interface"
+                            width={1400}
+                            height={900}
+                            className="w-full h-auto object-contain"
+                            priority
+                          />
+                        </div>
+                        <div className="w-full flex-shrink-0 relative">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
+                          <Image
+                            src="/package-browser.png"
+                            alt="WailBrew Package Browser"
+                            width={1400}
+                            height={900}
+                            className="w-full h-auto object-contain"
+                          />
+                        </div>
+                        <div className="w-full flex-shrink-0 relative">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
+                          <Image
+                            src="/package-details.png"
+                            alt="WailBrew Package Details"
+                            width={1400}
+                            height={900}
+                            className="w-full h-auto object-contain"
+                          />
+                        </div>
+                        <div className="w-full flex-shrink-0 relative">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
+                          <Image
+                            src="/installation-progress.png"
+                            alt="WailBrew Installation Progress"
+                            width={1400}
+                            height={900}
+                            className="w-full h-auto object-contain"
+                          />
+                        </div>
+                        <div className="w-full flex-shrink-0 relative">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
+                          <Image
+                            src="/preferences-settings.png"
+                            alt="WailBrew Preferences and Settings"
+                            width={1400}
+                            height={900}
+                            className="w-full h-auto object-contain"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="text-subheading mb-6">Package Browser</h3>
-                  <p className="text-body leading-relaxed">
-                    Browse and search through thousands of Homebrew packages with an intuitive interface that makes discovery effortless.
-                  </p>
-                </div>
-                
-                <div className="card animate-fade-in-up-delay-1">
-                  <div className="aspect-video bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--card-bg)] rounded-xl mb-10 flex items-center justify-center border border-[var(--border)] overflow-hidden">
-                    <div className="text-center">
-                      <CommandLineIcon className="w-16 h-16 text-[var(--foreground-subtle)] mx-auto mb-4" />
-                      <p className="text-[var(--foreground-subtle)] text-sm">Screenshot Coming Soon</p>
-                    </div>
-                  </div>
-                  <h3 className="text-subheading mb-6">Package Management</h3>
-                  <p className="text-body leading-relaxed">
-                    Install, update, and remove packages with confidence. Real-time feedback and progress tracking keep you informed.
-                  </p>
-                </div>
+
+              {/* Navigation Arrows */}
+              <button 
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10 opacity-0 hover:opacity-100 group-hover:opacity-100"
+                onClick={() => {
+                  const track = document.getElementById('screenshot-track');
+                  if (track) {
+                    const currentIndex = parseInt(track.dataset.currentIndex || '0');
+                    const newIndex = currentIndex > 0 ? currentIndex - 1 : 4;
+                    track.style.transform = `translateX(-${newIndex * 100}%)`;
+                    track.dataset.currentIndex = newIndex.toString();
+                    (window as any).updateDots(newIndex);
+                  }
+                }}
+              >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              <button 
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10 opacity-0 hover:opacity-100 group-hover:opacity-100"
+                onClick={() => {
+                  const track = document.getElementById('screenshot-track');
+                  if (track) {
+                    const currentIndex = parseInt(track.dataset.currentIndex || '0');
+                    const newIndex = currentIndex < 4 ? currentIndex + 1 : 0;
+                    track.style.transform = `translateX(-${newIndex * 100}%)`;
+                    track.dataset.currentIndex = newIndex.toString();
+                    (window as any).updateDots(newIndex);
+                  }
+                }}
+              >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Dot Indicators */}
+              <div className="flex justify-center space-x-3 mt-8">
+                <button className="screenshot-dot-enhanced active" onClick={() => (window as any).goToSlide(0)}>
+                  <span className="dot-inner"></span>
+                </button>
+                <button className="screenshot-dot-enhanced" onClick={() => (window as any).goToSlide(1)}>
+                  <span className="dot-inner"></span>
+                </button>
+                <button className="screenshot-dot-enhanced" onClick={() => (window as any).goToSlide(2)}>
+                  <span className="dot-inner"></span>
+                </button>
+                <button className="screenshot-dot-enhanced" onClick={() => (window as any).goToSlide(3)}>
+                  <span className="dot-inner"></span>
+                </button>
+                <button className="screenshot-dot-enhanced" onClick={() => (window as any).goToSlide(4)}>
+                  <span className="dot-inner"></span>
+                </button>
               </div>
             </div>
           </div>
