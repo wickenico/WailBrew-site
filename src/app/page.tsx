@@ -4,6 +4,14 @@ import { GitHubIcon, DownloadIcon, CommandLineIcon, SparklesIcon, ShieldCheckIco
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+// Extend Window interface to include our custom methods
+declare global {
+  interface Window {
+    updateDots: (activeIndex: number) => void;
+    goToSlide: (index: number) => void;
+  }
+}
+
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -39,7 +47,7 @@ export default function Home() {
     }
 
     // Screenshot slider functions
-    (window as any).updateDots = function(activeIndex: number) {
+    window.updateDots = function(activeIndex: number) {
       const dots = document.querySelectorAll('.screenshot-dot-enhanced');
       dots.forEach((dot, index) => {
         if (index === activeIndex) {
@@ -50,12 +58,12 @@ export default function Home() {
       });
     };
 
-    (window as any).goToSlide = function(index: number) {
+    window.goToSlide = function(index: number) {
       const track = document.getElementById('screenshot-track');
       if (track) {
         track.style.transform = `translateX(-${index * 100}%)`;
         track.dataset.currentIndex = index.toString();
-        (window as any).updateDots(index);
+        window.updateDots(index);
       }
     };
     
@@ -548,7 +556,7 @@ export default function Home() {
                     const newIndex = currentIndex > 0 ? currentIndex - 1 : 4;
                     track.style.transform = `translateX(-${newIndex * 100}%)`;
                     track.dataset.currentIndex = newIndex.toString();
-                    (window as any).updateDots(newIndex);
+                    window.updateDots(newIndex);
                   }
                 }}
               >
@@ -566,7 +574,7 @@ export default function Home() {
                     const newIndex = currentIndex < 4 ? currentIndex + 1 : 0;
                     track.style.transform = `translateX(-${newIndex * 100}%)`;
                     track.dataset.currentIndex = newIndex.toString();
-                    (window as any).updateDots(newIndex);
+                    window.updateDots(newIndex);
                   }
                 }}
               >
@@ -577,19 +585,19 @@ export default function Home() {
 
               {/* Dot Indicators */}
               <div className="flex justify-center space-x-3 mt-8">
-                <button className="screenshot-dot-enhanced active" onClick={() => (window as any).goToSlide(0)}>
+                <button className="screenshot-dot-enhanced active" onClick={() => window.goToSlide(0)}>
                   <span className="dot-inner"></span>
                 </button>
-                <button className="screenshot-dot-enhanced" onClick={() => (window as any).goToSlide(1)}>
+                <button className="screenshot-dot-enhanced" onClick={() => window.goToSlide(1)}>
                   <span className="dot-inner"></span>
                 </button>
-                <button className="screenshot-dot-enhanced" onClick={() => (window as any).goToSlide(2)}>
+                <button className="screenshot-dot-enhanced" onClick={() => window.goToSlide(2)}>
                   <span className="dot-inner"></span>
                 </button>
-                <button className="screenshot-dot-enhanced" onClick={() => (window as any).goToSlide(3)}>
+                <button className="screenshot-dot-enhanced" onClick={() => window.goToSlide(3)}>
                   <span className="dot-inner"></span>
                 </button>
-                <button className="screenshot-dot-enhanced" onClick={() => (window as any).goToSlide(4)}>
+                <button className="screenshot-dot-enhanced" onClick={() => window.goToSlide(4)}>
                   <span className="dot-inner"></span>
                 </button>
               </div>
