@@ -238,6 +238,34 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Header Layout Improvements */
+.nav-blur .max-w-7xl {
+  display: flex;
+  align-items: center;
+}
+
+.nav-blur .flex.justify-between {
+  width: 100%;
+}
+
+/* Ensure proper spacing on mobile */
+@media (max-width: 1023px) {
+  .nav-blur .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Logo section styling */
+.nav-blur .flex-shrink-0 {
+  min-width: fit-content;
+}
+
+/* Desktop navigation styling */
+.nav-blur .hidden.lg\:flex {
+  min-width: fit-content;
+}
+
 /* Modern Navigation Menu Items */
 .nav-menu-item {
   position: relative;
@@ -249,6 +277,7 @@ body {
   border-radius: 0.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .nav-menu-item:hover {
@@ -328,6 +357,7 @@ body {
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .nav-github-button:hover {
@@ -348,6 +378,211 @@ body {
 /* Logo Section */
 
 
+/* Mobile Menu Panel */
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100vh;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: slideInFromRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  box-shadow: -10px 0 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile Menu Items */
+.mobile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  color: var(--foreground-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.mobile-menu-item:hover {
+  color: var(--foreground);
+  background: var(--surface-elevated);
+  transform: translateX(4px);
+}
+
+.mobile-menu-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 60%;
+  background: var(--gradient-primary);
+  border-radius: 0 4px 4px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-50%);
+}
+
+.mobile-menu-item:hover::before {
+  width: 4px;
+}
+
+.mobile-menu-item.active {
+  color: var(--foreground);
+  background: var(--surface-elevated);
+}
+
+.mobile-menu-item.active::before {
+  width: 4px;
+}
+
+/* Mobile GitHub Button */
+.mobile-github-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  background: var(--primary);
+  border: none;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  cursor: pointer;
+}
+
+.mobile-github-button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+}
+
+.mobile-github-button svg {
+  transition: transform 0.2s ease;
+}
+
+.mobile-github-button:hover svg {
+  transform: scale(1.1);
+}
+
+/* Interactive Element Cursor Styles */
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Navigation specific cursor styles */
+.nav-blur button {
+  cursor: pointer;
+}
+
+/* Logo link styles */
+.nav-logo-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-logo-link:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
+}
+
+/* External link indicator */
+a[target="_blank"] {
+  cursor: pointer;
+  position: relative;
+}
+
+/* Add subtle external link indicator */
+a[target="_blank"]:hover::after {
+  content: '↗';
+  position: absolute;
+  top: -2px;
+  right: -12px;
+  font-size: 0.7em;
+  color: var(--foreground-muted);
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+/* Smooth scrolling for internal links */
+a[href^="#"] {
+  cursor: pointer;
+  scroll-behavior: smooth;
+}
+
+/* Different cursor for disabled elements */
+.disabled,
+[disabled] {
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+/* Loading cursor for async operations */
+.loading {
+  cursor: wait;
+}
+
+/* Copy button cursor */
+button[onclick*="copy"],
+.copy-button {
+  cursor: copy;
+}
+
+/* Drag cursor for draggable elements */
+[draggable="true"] {
+  cursor: grab;
+}
+
+[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+/* Mobile overlay cursor */
+.fixed.inset-0[role="button"] {
+  cursor: pointer;
+}
+
+/* Medium screens - tablet/small desktop adjustments */
+@media (max-width: 1280px) {
+  .nav-menu-item {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  
+  .nav-github-button {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
 /* Mobile Navigation Responsive */
 @media (max-width: 1024px) {
   .nav-menu-item {
@@ -364,6 +599,26 @@ body {
   .nav-github-button {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
+  }
+  
+  /* Ensure mobile header spacing */
+  .nav-blur h-20 {
+    height: 4.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-panel {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-menu-panel {
+    width: 100vw;
+    right: 0;
+    left: 0;
+    border-left: none;
   }
 }
 
