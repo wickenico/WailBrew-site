@@ -651,68 +651,13 @@ export default function Home() {
         </div>
         
         {/* Centered Slider */}
-        <div className="w-full flex justify-center">
-          <div className="max-w-4xl mx-auto w-full">
-            <div className="relative">
-              <div className="screenshot-slider overflow-hidden rounded-3xl border-2 border-[var(--border)] shadow-2xl bg-gradient-to-br from-[var(--surface-elevated)] to-[var(--surface)] backdrop-blur-sm mx-auto">
-                      <div className="flex transition-transform duration-700 ease-out" id="screenshot-track">
-                        <div className="w-full flex-shrink-0 relative">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
-                          <Image
-                            src="/main-interface.png"
-                            alt="WailBrew Main Interface"
-                            width={1400}
-                            height={900}
-                            className="w-full h-auto object-contain"
-                            priority
-                          />
-                        </div>
-                        <div className="w-full flex-shrink-0 relative">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
-                          <Image
-                            src="/package-browser.png"
-                            alt="WailBrew Package Browser"
-                            width={1400}
-                            height={900}
-                            className="w-full h-auto object-contain"
-                          />
-                        </div>
-                        <div className="w-full flex-shrink-0 relative">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
-                          <Image
-                            src="/package-details.png"
-                            alt="WailBrew Package Details"
-                            width={1400}
-                            height={900}
-                            className="w-full h-auto object-contain"
-                          />
-                        </div>
-                        <div className="w-full flex-shrink-0 relative">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
-                          <Image
-                            src="/installation-progress.png"
-                            alt="WailBrew Installation Progress"
-                            width={1400}
-                            height={900}
-                            className="w-full h-auto object-contain"
-                          />
-                        </div>
-                        <div className="w-full flex-shrink-0 relative">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
-                          <Image
-                            src="/preferences-settings.png"
-                            alt="WailBrew Preferences and Settings"
-                            width={1400}
-                            height={900}
-                            className="w-full h-auto object-contain"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-              {/* Navigation Arrows */}
-              <button 
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10 opacity-0 hover:opacity-100 group-hover:opacity-100"
+        <div className="w-full flex justify-center px-4">
+          <div className="max-w-3xl mx-auto w-full">
+            {/* Slider with navigation arrows */}
+            <div className="relative flex items-center gap-6">
+              {/* Left Navigation Arrow */}
+              <button
+                className="flex-shrink-0 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] hover:from-[var(--primary-hover)] hover:to-[var(--accent)] rounded-full p-3 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20 border-2 border-white/10"
                 onClick={() => {
                   const track = document.getElementById('screenshot-track');
                   if (track) {
@@ -723,14 +668,70 @@ export default function Home() {
                     window.updateDots(newIndex);
                   }
                 }}
+                aria-label="Previous screenshot"
               >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <svg className="w-7 h-7 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
 
-              <button 
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10 opacity-0 hover:opacity-100 group-hover:opacity-100"
+              {/* Screenshot Slider */}
+              <div className="flex-1">
+                <div className="screenshot-slider overflow-hidden rounded-2xl border-2 border-[var(--border)] shadow-2xl">
+                  <div className="flex transition-transform duration-700 ease-out" id="screenshot-track">
+                    <div className="w-full flex-shrink-0 relative">
+                      <Image
+                        src="/main-interface.png"
+                        alt="WailBrew Main Interface"
+                        width={800}
+                        height={512}
+                        className="w-full h-auto object-contain"
+                        priority
+                      />
+                    </div>
+                    <div className="w-full flex-shrink-0 relative">
+                      <Image
+                        src="/package-browser.png"
+                        alt="WailBrew Package Browser"
+                        width={800}
+                        height={512}
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="w-full flex-shrink-0 relative">
+                      <Image
+                        src="/package-details.png"
+                        alt="WailBrew Package Details"
+                        width={800}
+                        height={512}
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="w-full flex-shrink-0 relative">
+                      <Image
+                        src="/installation-progress.png"
+                        alt="WailBrew Installation Progress"
+                        width={800}
+                        height={512}
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                    <div className="w-full flex-shrink-0 relative">
+                      <Image
+                        src="/preferences-settings.png"
+                        alt="WailBrew Preferences and Settings"
+                        width={800}
+                        height={512}
+                        className="w-full h-auto object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Navigation Arrow */}
+              <button
+                className="flex-shrink-0 bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] hover:from-[var(--primary-hover)] hover:to-[var(--accent)] rounded-full p-3 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 z-20 border-2 border-white/10"
                 onClick={() => {
                   const track = document.getElementById('screenshot-track');
                   if (track) {
@@ -741,30 +742,12 @@ export default function Home() {
                     window.updateDots(newIndex);
                   }
                 }}
+                aria-label="Next screenshot"
               >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <svg className="w-7 h-7 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
-
-              {/* Dot Indicators */}
-              <div className="flex justify-center space-x-3 mt-8">
-                <button className="screenshot-dot-enhanced active" onClick={() => window.goToSlide(0)}>
-                  <span className="dot-inner"></span>
-                </button>
-                <button className="screenshot-dot-enhanced" onClick={() => window.goToSlide(1)}>
-                  <span className="dot-inner"></span>
-                </button>
-                <button className="screenshot-dot-enhanced" onClick={() => window.goToSlide(2)}>
-                  <span className="dot-inner"></span>
-                </button>
-                <button className="screenshot-dot-enhanced" onClick={() => window.goToSlide(3)}>
-                  <span className="dot-inner"></span>
-                </button>
-                <button className="screenshot-dot-enhanced" onClick={() => window.goToSlide(4)}>
-                  <span className="dot-inner"></span>
-                </button>
-              </div>
             </div>
           </div>
         </div>
