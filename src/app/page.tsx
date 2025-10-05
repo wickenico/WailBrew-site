@@ -15,6 +15,15 @@ declare global {
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [screenshots, setScreenshots] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Fetch screenshots dynamically
+    fetch('/api/screenshots')
+      .then(res => res.json())
+      .then(data => setScreenshots(data.screenshots))
+      .catch(err => console.error('Failed to load screenshots:', err));
+  }, []);
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]');
@@ -250,13 +259,9 @@ export default function Home() {
                     data-section="screenshots"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <Image
-                      src="/main-interface.png"
-                      alt=""
-                      width={20}
-                      height={20}
-                      className="w-5 h-5 object-contain rounded"
-                    />
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
                     <span>Screenshots</span>
                   </a>
                 </nav>
@@ -663,7 +668,8 @@ export default function Home() {
                   const track = document.getElementById('screenshot-track');
                   if (track) {
                     const currentIndex = parseInt(track.dataset.currentIndex || '0');
-                    const newIndex = currentIndex > 0 ? currentIndex - 1 : 4;
+                    const maxIndex = screenshots.length - 1;
+                    const newIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
                     track.style.transform = `translateX(-${newIndex * 100}%)`;
                     track.dataset.currentIndex = newIndex.toString();
                     window.updateDots(newIndex);
@@ -680,52 +686,18 @@ export default function Home() {
               <div className="flex-1">
                 <div className="screenshot-slider overflow-hidden rounded-2xl border-2 border-[var(--border)] shadow-2xl">
                   <div className="flex transition-transform duration-700 ease-out" id="screenshot-track">
-                    <div className="w-full flex-shrink-0 relative">
-                      <Image
-                        src="/main-interface.png"
-                        alt="WailBrew Main Interface"
-                        width={800}
-                        height={512}
-                        className="w-full h-auto object-contain"
-                        priority
-                      />
-                    </div>
-                    <div className="w-full flex-shrink-0 relative">
-                      <Image
-                        src="/package-browser.png"
-                        alt="WailBrew Package Browser"
-                        width={800}
-                        height={512}
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                    <div className="w-full flex-shrink-0 relative">
-                      <Image
-                        src="/package-details.png"
-                        alt="WailBrew Package Details"
-                        width={800}
-                        height={512}
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                    <div className="w-full flex-shrink-0 relative">
-                      <Image
-                        src="/installation-progress.png"
-                        alt="WailBrew Installation Progress"
-                        width={800}
-                        height={512}
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                    <div className="w-full flex-shrink-0 relative">
-                      <Image
-                        src="/preferences-settings.png"
-                        alt="WailBrew Preferences and Settings"
-                        width={800}
-                        height={512}
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
+                    {screenshots.map((screenshot, index) => (
+                      <div key={screenshot} className="w-full flex-shrink-0 relative">
+                        <Image
+                          src={screenshot}
+                          alt={`WailBrew Screenshot ${index + 1}`}
+                          width={800}
+                          height={512}
+                          className="w-full h-auto object-contain"
+                          priority={index === 0}
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -737,7 +709,8 @@ export default function Home() {
                   const track = document.getElementById('screenshot-track');
                   if (track) {
                     const currentIndex = parseInt(track.dataset.currentIndex || '0');
-                    const newIndex = currentIndex < 4 ? currentIndex + 1 : 0;
+                    const maxIndex = screenshots.length - 1;
+                    const newIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
                     track.style.transform = `translateX(-${newIndex * 100}%)`;
                     track.dataset.currentIndex = newIndex.toString();
                     window.updateDots(newIndex);
