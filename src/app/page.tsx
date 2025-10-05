@@ -285,23 +285,24 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-8 lg:px-12">
           <div className="text-center space-y-8">
             <div className="animate-fade-in-up">
-              <div className="flex justify-center mb-8 animate-scale-in">
-                <div className="relative">
-          <Image
+              {/* Logo and Title in One Row */}
+              <div className="flex items-center justify-center gap-6 mb-8">
+                <div className="relative animate-scale-in">
+                  <Image
                     src="/logo.png"
                     alt="WailBrew Logo"
-                    width={120}
-                    height={120}
+                    width={70}
+                    height={70}
                     className="object-contain drop-shadow-2xl"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] rounded-full blur-xl opacity-20 animate-pulse"></div>
                 </div>
+                <h1 className="text-5xl lg:text-6xl font-bold gradient-text animate-fade-in-up-delay-1">
+                  WailBrew
+                </h1>
               </div>
-              <h1 className="text-display gradient-text mb-6 animate-fade-in-up-delay-1 hero-text-title">
-                WailBrew
-              </h1>
               <div className="mb-12">
-                <p className="text-body-large max-w-3xl mx-auto animate-fade-in-up-delay-2 leading-relaxed hero-text-description">
+                <p className="text-body-medium max-w-3xl mx-auto animate-fade-in-up-delay-2 leading-relaxed hero-text-description">
                   A minimalistic and beautiful GUI for Homebrew package management on macOS. 
                   Experience the power of command-line tools through an intuitive, modern interface.
                 </p>
