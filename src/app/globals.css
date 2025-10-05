@@ -888,6 +888,13 @@ button[onclick*="copy"],
   overflow: hidden;
 }
 
+/* GitHub Buttons */
+.github-button {
+  overflow: hidden;
+  border: 0;
+  vertical-align: middle;
+}
+
 .hero-bg::before {
   content: '';
   position: absolute;

@@ -332,6 +332,46 @@ export default function Home() {
                 </div>
               </div>
               
+              {/* Spacer between code block and GitHub buttons */}
+              <div className="h-12"></div>
+              
+              {/* GitHub Interaction Buttons */}
+              <div className="flex justify-center items-center animate-fade-in-up-delay-3" style={{ gap: '10px' }}>
+                <div style={{ width: '170px', display: 'flex', justifyContent: 'center' }}>
+                  <iframe
+                    src="https://ghbtns.com/github-btn.html?user=wickenico&type=follow&count=true"
+                    frameBorder="0"
+                    scrolling="0"
+                    width="170"
+                    height="20"
+                    title="Follow @wickenico on GitHub"
+                    className="github-button"
+                  />
+                </div>
+                <div style={{ width: '170px', display: 'flex', justifyContent: 'center' }}>
+                  <iframe
+                    src="https://ghbtns.com/github-btn.html?user=wickenico&repo=WailBrew&type=fork&count=true"
+                    frameBorder="0"
+                    scrolling="0"
+                    width="90"
+                    height="20"
+                    title="Fork WailBrew on GitHub"
+                    className="github-button"
+                  />
+                </div>
+                <div style={{ width: '170px', display: 'flex', justifyContent: 'center' }}>
+                  <iframe
+                    src="https://ghbtns.com/github-btn.html?user=wickenico&repo=WailBrew&type=star&count=true"
+                    frameBorder="0"
+                    scrolling="0"
+                    width="165"
+                    height="20"
+                    title="Star WailBrew on GitHub"
+                    className="github-button"
+                  />
+                </div>
+              </div>
+              
               {/* Spacer for proper separation */}
               <div className="h-10"></div>
               
